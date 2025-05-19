@@ -102,14 +102,12 @@
             <section>
                 <h2>Logging for Security & Access Control</h2>
                 <ul>
-                    <li>Logs are essential for investigating possible security events.</li>
-                    <li>We can use logs, particularly audit logs, to track actions within our Google Cloud environment.</li>
-                    <li>Managing Access to Logs:
-                        <ul>
-                            <li>Logs are stored in log buckets.</li>
-                            <li>Sensitive Data Protection can be integrated to redact PII in logs.</li>
-                        </ul>
-                    </li>
+                    <li>Logs are stored in log buckets.</li>
+                    <li>Log views are used to control who can access logs within a bucket.</li>
+                    <li>Custom log views help protect sensitive data by restricting access to specific projects or users.</li>
+                    <li>It's crucial to use appropriate IAM controls on logs, granting only minimal necessary access.</li>
+                    <li>Be especially careful with Data Access audit logs as they may contain PII.</li>
+                    <li>Sensitive Data Protection can be integrated to redact PII in logs.</li>
                 </ul>
             </section>
             <section>
@@ -122,6 +120,7 @@
                     <li>Key Terms:
                         <ul>
                             <li>Service Level Indicators (SLIs): Specific monitoring metrics chosen to measure service reliability from a user's perspective.</li>
+                            <li>Service Level Objectives (SLOs): Targets set based on SLIs (e.g., "99.9% of requests must succeed"). Alerts are often tied to SLOs.</li>
                             <li>Service Level Agreements (SLAs): Formal commitments to users, often with contractual penalties.</li>
                         </ul>
                     </li>
@@ -134,6 +133,7 @@
                     <li>Key APM Tools:
                         <ul>
                             <li>Error Reporting: Automatically groups and analyses application crashes and errors.</li>
+                            <li>Cloud Trace: Provides insights into the latency of requests as they propagate through your application and services.</li>
                             <li>Cloud Profiler: Helps you understand the resource consumption (CPU and memory) of your running code.</li>
                         </ul>
                     </li>
@@ -153,7 +153,44 @@
                 <ul>
                     <li>Faster Troubleshooting: Provides data crucial for debugging functional and performance issues.</li>
                     <li>Reduced Mean Time To Resolution (MTTR): Advanced analytical capabilities help diagnose issues more quickly.</li>
+                    <li>Proactive Problem Solving: Monitoring reveals issues needing urgent attention, and alerting policies notify us before minor issues become major incidents.</li>
+                    <li>Improved Performance: Insights from monitoring and profiling guide optimisation efforts.</li>
+                    <li>Enhanced Reliability: Monitoring is fundamental to achieving and maintaining product reliability.</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Who Uses These Tools in Practice?</h2>
+                <ul>
+                    <li>Developers: Often use Error Reporting, Trace, and Profiler for application troubleshooting. They also need access to logs and monitoring metrics.</li>
+                    <li>Operations/SysOps: Traditionally use logs and monitoring, but may need tracing tools too.</li>
+                    <li>DevOps: Span both development and operations needs, heavily relying on monitoring for product reliability, incident response, postmortems, and capacity planning. They also use advanced logging for troubleshooting.</li>
+                    <li>SecOps Analysts: Use logging features (especially audit logs and network logs) for security monitoring and investigation.</li>
+                    <li>Anyone involved in ensuring the health, performance, and security of applications on Google Cloud benefits from these tools.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Prerequisites for Deeper Exploration (Optional)</h2>
+                <ul>
+                    <li>Basic scripting or coding ability.</li>
+                    <li>Google Cloud Fundamentals: Core Infrastructure or equivalent experience.</li>
+                    <li>Proficiency with command-line tools and Linux operating system environments.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Summary - Embracing Observability</h2>
+                <ul>
+                    <li>Google Cloud Observability provides essential visibility into our systems.</li>
+                    <li>Tools like Cloud Monitoring and Cloud Logging are fundamental for collecting and analysing data.</li>
+                    <li>Alerting is key to proactive problem detection.</li>
+                    <li>APM tools help us perfect application performance.</li>
+                    <li>By leveraging these tools, we can troubleshoot faster, improve reliability, and ensure a better experience for our users.</li>
+                </ul>
+                <p>Observability isn't just monitoring; it's about understanding the inner workings of our systems to respond effectively to any situation.</p>
+            </section>
+            <section>
+                <h2>Questions & Discussion</h2>
+                <p>Thank you for your time!</p>
+                <p>What questions do you have about Google Cloud Observability and Monitoring?</p>
             </section>
         </div>
     </div>
