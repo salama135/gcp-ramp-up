@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observability and Monitoring in Google Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Observability and Monitoring in Google Cloud</h1>
+                <p>Understanding Your Applications and Infrastructure</p>
+                <p>Presented by: [Your Name/Team Name]</p>
+                <p>Date: [Insert Date]</p>
+            </section>
+            <section>
+                <h2>What is Google Cloud Observability?</h2>
+                <ul>
+                    <li>Google Cloud Observability is a suite of tools designed to help you understand what's happening with your applications and workloads.</li>
+                    <li>It helps you explore both the known and unknown issues underlying your workloads.</li>
+                    <li>It begins with collecting signals, which include metric, logging, and trace data.</li>
+                    <li>These signals are captured and integrated into Google products, from the hardware layer up.</li>
+                    <li>The signal data flows into Google Cloud Observability tools for visualisation and analysis.</li>
+                    <li>The goal is to provide precise insights into your Cloud installation.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>The Crucial Need for Observability</h2>
+                <ul>
+                    <li>Visibility into system health: Provides a clear mental model of how our application is working and reports on the overall health of systems.</li>
+                    <li>Error reporting and alerting: Ensures problems are brought directly to our attention.</li>
+                    <li>Efficient troubleshooting: Helps us fix issues quickly when something is broken.</li>
+                    <li>Performance improvement: Guides us in optimising our systems.</li>
+                </ul>
+                <p>Monitoring is the foundation of product reliability.</p>
+            </section>
+            <section>
+                <h2>Key Components of Google Cloud Observability</h2>
+                <ul>
+                    <li>Cloud Monitoring: For collecting and visualising metrics, setting up dashboards and charts, and defining uptime checks.</li>
+                    <li>Cloud Logging: For collecting, analysing, and exporting log data.</li>
+                    <li>Error Reporting: Specifically designed to help spot, count, and analyse application crashes.</li>
+                    <li>Cloud Trace: Used to trace latency in applications.</li>
+                    <li>Cloud Profiler: Provides continuous CPU and memory profiling.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Deep Dive: Cloud Monitoring</h2>
+                <ul>
+                    <li>Cloud Monitoring delivers real-time information about our systems.</li>
+                    <li>Its purpose is to keep precise track of everything happening with resources launched in Google Cloud.</li>
+                    <li>Benefits & What it Provides:
+                        <ul>
+                            <li>Product Reliability: It's the foundation for reliability.</li>
+                            <li>In-Context Insights: Provides relevant telemetry data alongside your workloads within Google Cloud.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Cloud Monitoring: Visualising Data</h2>
+                <ul>
+                    <li>Metric data can be visualised in dashboards and through the Metrics Explorer.</li>
+                    <li>We can create various types of charts to visualise metrics, such as resource consumption and application load.</li>
+                    <li>These charts can then be used to build custom dashboards.</li>
+                    <li>The data model for monitoring involves:
+                        <ul>
+                            <li>A metric field (including label and type) describing the metric.</li>
+                            <li>A resource field (including label and resource information) from where metrics are collected.</li>
+                        </ul>
+                    </li>
+                    <li>For more versatile interaction, we can leverage query languages like Monitoring Query Language (MQL) and PromQL.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Cloud Monitoring: Uptime Checks</h2>
+                <ul>
+                    <li>Beyond just metrics, Cloud Monitoring allows us to define uptime checks.</li>
+                    <li>These checks track the liveliness and latency of our external-facing sites and services.</li>
+                    <li>Creating uptime checks is a practical skill for maintaining reliability.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Deep Dive: Cloud Logging</h2>
+                <ul>
+                    <li>Cloud Logging is critical for the health and security of our cloud resources.</li>
+                    <li>It enables us to collect, analyse, and export logging data.</li>
+                    <li>The Logs Explorer is the tool to dissect and analyse automated and custom logs.</li>
+                    <li>Log Analytics provides advanced capabilities, allowing us to run queries over logs for deeper insights.</li>
+                    <li>Types of Logs Collected:
+                        <ul>
+                            <li>Google Cloud audit logs (Admin Activity, Data Access - requiring configuration).</li>
+                            <li>Network telemetry data (VPC flow logs, GKE network, firewall, load balancer logs).</li>
+                        </ul>
+                    </li>
+                    <li>Logs can be exported for storage, analysis, or integration with other services.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Logging for Security & Access Control</h2>
+                <ul>
+                    <li>Logs are essential for investigating possible security events.</li>
+                    <li>We can use logs, particularly audit logs, to track actions within our Google Cloud environment.</li>
+                    <li>Managing Access to Logs:
+                        <ul>
+                            <li>Logs are stored in log buckets.</li>
+                            <li>Sensitive Data Protection can be integrated to redact PII in logs.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Alerting Policies: Getting Notified</h2>
+                <ul>
+                    <li>When problems arise (incidents), signal data can trigger automated alerts.</li>
+                    <li>Alerts can notify key personnel through various channels.</li>
+                    <li>The purpose of creating alerting policies is to help us identify and resolve problems quickly.</li>
+                    <li>Alerts are typically configured to trigger when a service is down or when our Service Level Objectives (SLOs) or Service Level Agreements (SLAs) are at risk of not being met.</li>
+                    <li>Key Terms:
+                        <ul>
+                            <li>Service Level Indicators (SLIs): Specific monitoring metrics chosen to measure service reliability from a user's perspective.</li>
+                            <li>Service Level Agreements (SLAs): Formal commitments to users, often with contractual penalties.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Application Performance Management (APM) Tools</h2>
+                <ul>
+                    <li>The Google Cloud Observability suite includes tools specifically for Application Performance Management.</li>
+                    <li>Key APM Tools:
+                        <ul>
+                            <li>Error Reporting: Automatically groups and analyses application crashes and errors.</li>
+                            <li>Cloud Profiler: Helps you understand the resource consumption (CPU and memory) of your running code.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Key Characteristics of Google Cloud Observability</h2>
+                <ul>
+                    <li>User-Focused: Products are designed to help us understand the customer's experience through tools like SLO monitoring, uptime checks, and tracing.</li>
+                    <li>Integrated for Ease: Data is automatically ingested, datasets can be connected, and telemetry is collected in-context across Google Cloud services.</li>
+                    <li>Open, Flexible Foundations: Leverages popular open source projects like Prometheus, OpenTelemetry, and Fluentbit.</li>
+                    <li>Meaningful Analysis and Alerting: Provides powerful tools for analysis and leverages alerting for both automated and human-driven responses.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>How Observability Empowers Our Team</h2>
+                <ul>
+                    <li>Faster Troubleshooting: Provides data crucial for debugging functional and performance issues.</li>
+                    <li>Reduced Mean Time To Resolution (MTTR): Advanced analytical capabilities help diagnose issues more quickly.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize();
+    </script>
+</body>
+</html>
