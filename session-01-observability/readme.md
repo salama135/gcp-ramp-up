@@ -1,230 +1,283 @@
-Absolutely! Here is a presentation outline drawing upon the provided sources to introduce your team to Observability and Monitoring in Google Cloud. I've included image placeholders and aimed for an enlightening tone.
+# Observability
 
-***
+## Need for observability
 
-**Slide 1: Title Slide**
+![alt text](image.png)
 
-**Observability and Monitoring in Google Cloud**
-Understanding Your Applications and Infrastructure
+1. Visibility into system health : Help me understand my application and tell me if its healthy
+    - are my systems functioning?
+    - do my systems havesufficient resources available?”
 
-Presented by: [Your Name/Team Name]
-Date: [Insert Date]
+2. Error reporting and alerting: Bring my attention directly to problems
+    - proactive alerting, anomaly detection, or guidance on issues.
+    - Ideally, they want to avoid connecting the dots themselves.
 
-[Placeholder for a relevant Google Cloud/Observability image, e.g., Image from Source 2 or 6]
+3. Efficient troubleshooting: Help me fix it if its broken
+    - If possible, the service needs to be opinionated about the potential cause of the issue and recommend a meaningful direction for the customer to start their investigation
 
-***
+4. Improve performance: Guide me to optimize it
+    - Users need a service that can perform retrospective analysis.
+    - Generally, help them plan intelligently by analyzing trends and understand how changes in the system affect its performance.
 
-**Slide 2: Introduction - What is Google Cloud Observability?**
+![alt text](image-1.png)
 
-*   **Google Cloud Observability** is a suite of tools designed to help you understand what's happening with your applications and workloads.
-*   It helps you explore both the **known and unknown issues** underlying your workloads.
-*   It begins with collecting **signals**, which include metric, logging, and trace data.
-*   These signals are captured and integrated into Google products, from the hardware layer up.
-*   The signal data flows into Google Cloud Observability tools for **visualisation and analysis**.
-*   The goal is to provide **precise insights** into your Cloud installation.
+- [sre - books](https://sre.google/books/)
 
-[Placeholder for an introductory image related to Google Cloud or Observability, e.g., Image from Source 6]
+Collecting, processing, aggregating, and displaying real-time quantitative data
+about a system, such as
 
-***
+- query counts and types
+- error counts and types,
+- processing times
+- server lifetimes
 
-**Slide 3: The Crucial Need for Observability**
+![alt text](image-2.png)
 
-Why is observability so important for our team?
-*   **Visibility into system health:** It provides a clear mental model of how our application is working and reports on the overall health of systems. This helps us answer questions like "Are our systems functioning?" or "Do they have sufficient resources?".
-*   **Error reporting and alerting:** It ensures problems are brought directly to our attention.
-*   **Efficient troubleshooting:** It helps us fix issues quickly when something is broken.
-*   **Performance improvement:** It guides us in optimising our systems.
+- However, to be truly reliable, even the very best products still must be deployed into environments with enough ``capacity`` to handle the anticipated client load.
 
-**Monitoring is the foundation of product reliability**.
+- Great products also need thorough ``testing``, preferably automated testing, and a
+refined ``continuous integration/continuous development (CI/CD)`` release pipeline.
 
-[Placeholder for an image representing the needs for observability, e.g., the icons from Source 8]
+- ``Postmortems`` and ``root cause analyses`` are the DevOps team's way of letting the client
+know why an incident happened and why it is unlikely to happen again.
 
-***
+    > In DevOps, postmortems are structured, blameless analyses of incidents or failures, conducted to understand what happened, identify root causes, and implement corrective actions to prevent recurrence.
 
-**Slide 4: Key Components of Google Cloud Observability**
+![alt text](image-3.png)
 
-The suite includes several powerful tools:
-*   **Cloud Monitoring:** For collecting and visualising metrics, setting up dashboards and charts, and defining uptime checks.
-*   **Cloud Logging:** For collecting, analysing, and exporting log data.
-*   **Error Reporting:** Specifically designed to help spot, count, and analyse application crashes.
-*   **Cloud Trace:** Used to trace latency in applications.
-*   **Cloud Profiler:** Provides continuous CPU and memory profiling.
+- Continual improvement
+- Dashboards
+- Automated alerts
+- Incident response
 
-While some tools like Error Reporting, Trace, and Profiler tend to be more for developers perfecting applications, and others like logging and basic monitoring might seem more operations-focused, in reality, **both developers and operations team members need access to these tools**.
+We need ``automated alerts`` because humans tend to look at things only when there's
+something important to look at. An even better option is to construct ``automated
+systems`` to handle as many alerts as possible so humans only have to look at the
+most critical issues.
 
-[Placeholder for an image showing icons or logos related to these products, e.g., Image from Source 14]
+Typically, there's some triggering event: a ``system outage``, ``data loss``, a ``monitoring
+failure``, or some form of manual intervention. The trigger leads to a response by both
+``automated systems`` and ``DevOps personnel``.
 
-***
+Many times the response starts by examining signal data that comes in through
+monitoring. The impact of the issue is evaluated and escalated when needed, and an
+initial response is formulated. Throughout, good SREs will strive to keep the customer
+informed and respond when appropriate.
 
-**Slide 5: Deep Dive: Cloud Monitoring**
+## Four Golden Signals
 
-*   Cloud Monitoring delivers **real-time information** about our systems.
-*   Its purpose is to keep precise track of everything happening with resources launched in Google Cloud.
-*   **Benefits & What it Provides:**
-    *   **Product Reliability:** It's the foundation for reliability.
-    *   **Issue Identification:** Reveals what needs urgent attention.
-    *   **Trend Analysis:** Shows trends in application usage for better capacity planning.
-    *   **Experience Improvement:** Helps improve the application client's experience.
-    *   **Monitoring Multiple Projects:** Enables viewing metrics across several cloud projects.
-    *   **Customisation:** Offers custom visualisation for specific workloads like GKE and Compute Engine.
-    *   **In-Context Insights:** Provides relevant telemetry data alongside your workloads within Google Cloud.
+### Latency
 
-[Placeholder for an image representing monitoring or charts, e.g., Image from Source 22 or the monitor icon from 12]
+![alt text](image-4.png)
 
-***
+Latency measures how long it takes a particular part of a system to return a result.
 
-**Slide 6: Cloud Monitoring: Visualising Data**
+Latency is important because:
 
-*   Metric data can be visualised in **dashboards** and through the **Metrics Explorer**.
-*   We can create various types of **charts** to visualise metrics, such as resource consumption and application load.
-*   These charts can then be used to build **custom dashboards**.
-*   The data model for monitoring involves:
-    *   A **metric field** (including label and type) describing the metric.
-    *   A **resource field** (including label and resource information) from where metrics are collected.
-*   For more versatile interaction, we can leverage query languages like **Monitoring Query Language (MQL)** and **PromQL**. Understanding MQL's purpose is key.
+1. It directly affects the user experience.
+2. Changes in latency could indicate emerging issues.
+3. Its values may be tied to capacity demands.
+4. It can be used to measure system improvements.
 
-[Placeholder for an image representing dashboards or charts, e.g., the laptop with charts from Source 10]
+But how is it measured? Sample latency metrics include:
 
-***
+    - Page load latency
+    - Number of requests waiting for a thread
+    - Query duration
+    - Service response time
+    - Transaction duration
+    - Time to first response
+    - Time to complete data return
 
-**Slide 7: Cloud Monitoring: Uptime Checks**
+### Traffic
 
-*   Beyond just metrics, Cloud Monitoring allows us to define **uptime checks**.
-*   These checks track the liveliness and latency of our external-facing sites and services.
-*   Creating uptime checks is a practical skill for maintaining reliability.
+![alt text](image-5.png)
 
-[Placeholder for an image related to uptime checks or health status]
+Traffic measures how many requests are reaching your system.
 
-***
+Traffic is important because:
 
-**Slide 8: Deep Dive: Cloud Logging**
+1. It’s an indicator of current system demand.
+2. Its historical trends are used for capacity planning.
+3. It’s a core measure when calculating infrastructure spend.
 
-*   **Cloud Logging** is critical for the **health and security** of our cloud resources.
-*   It enables us to **collect, analyse, and export logging data**.
-*   The **Logs Explorer** is the tool to dissect and analyse automated and custom logs.
-*   **Log Analytics** provides advanced capabilities, allowing us to run queries over logs for deeper insights. This is invaluable for quick troubleshooting, such as counting requests by type or severity.
-*   **Types of Logs Collected:**
-    *   Google Cloud **audit logs** (Admin Activity, Data Access - requiring configuration).
-    *   **Network telemetry data** (VPC flow logs, GKE network, firewall, load balancer logs).
-*   Logs can be exported for storage, analysis, or integration with other services.
+Sample traffic metrics include:
 
-[Placeholder for an image related to logging or logs analysis, e.g., the list/document icon from Source 12]
+    - # HTTP requests per second
+    - # requests for static vs. dynamic content
+    - Network I/O
+    - # concurrent sessions
+    - # transactions per second
+    - # retrievals per second
+    - # active requests
+    - # write ops
+    - # read ops
+    - And # active connections
 
-***
+### Saturation
 
-**Slide 9: Logging for Security & Access Control**
+![alt text](image-6.png)
 
-*   Logs are essential for **investigating possible security events**.
-*   We can use logs, particularly audit logs, to track actions within our Google Cloud environment. For example, finding all audit logs for a specific user.
-*   **Managing Access to Logs:**
-    *   Logs are stored in **log buckets**.
-    *   **Log views** are used to control who can access logs within a bucket.
-    *   Custom log views help protect sensitive data by restricting access to specific projects or users.
-    *   It's crucial to use appropriate **IAM controls** on logs, granting only minimal necessary access.
-    *   Be especially careful with **Data Access audit logs** as they may contain PII.
-    *   **Sensitive Data Protection** can be integrated to redact PII in logs.
+Saturation, which measures how close to capacity a system is. It’s important to note, though, that capacity is often a subjective measure, that depends on the underlying service or application.
 
-[Placeholder for an image related to security or access control, e.g., the clipboard with checkmarks from Source 2]
+Saturation is important because:
 
-***
+1. It's an indicator of current system demand. In other words, how full the service is.
+2. It focuses on the most constrained resources.
+3. It’s frequently tied to degrading performance as capacity is reached.
 
-**Slide 10: Alerting Policies: Getting Notified**
+Sample capacity metrics include:
 
-*   When problems arise (incidents), **signal data** can trigger **automated alerts**.
-*   Alerts can notify key personnel through various channels.
-*   The purpose of creating alerting policies is to help us **identify and resolve problems quickly**.
-*   Alerts are typically configured to trigger when a service is down or when our **Service Level Objectives (SLOs)** or **Service Level Agreements (SLAs)** are at risk of not being met.
-*   **Key Terms:**
-    *   **Service Level Indicators (SLIs):** Specific monitoring metrics (like the ratio of successful requests to total requests) chosen to measure service reliability from a user's perspective.
-    *   **Service Level Objectives (SLOs):** Targets set based on SLIs [e.g., "99.9% of requests must succeed"]. Alerts are often tied to SLOs.
-    *   **Service Level Agreements (SLAs):** Formal commitments to users, often with contractual penalties. Alerting thresholds are usually set *higher* than SLA minimums to give us time to react before breaching the SLA.
+    - % memory utilization
+    - % thread pool utilization
+    - % cache utilization
+    - % disk utilization
+    - % CPU utilization
+    - Disk quota
+    - Memory quota
+    - # of available connections
+    - And # of users on the system
 
-[Placeholder for an image related to alerts or warnings, e.g., the red triangle from Source 27]
+### Errors
 
-***
+![alt text](image-7.png)
 
-**Slide 11: Application Performance Management (APM) Tools**
+Errors, which are events that measure system failures or other issues. Errors are often raised when a flaw, failure, or fault in a computer program or system causes it to produce incorrect or unexpected results, or behave in unintended ways.
 
-*   The Google Cloud Observability suite includes tools specifically for **Application Performance Management**.
-*   These tools are particularly useful for developers who are trying to **perfect or troubleshoot applications** running on Google Cloud.
-*   **Key APM Tools:**
-    *   **Error Reporting:** Automatically groups and analyses application crashes and errors. It helps teams quickly see the frequency and details of different error types.
-    *   **Cloud Trace:** Provides insights into the latency of requests as they propagate through your application and services. Useful for identifying performance bottlenecks.
-    *   **Cloud Profiler:** Helps you understand the resource consumption (CPU and memory) of your running code.
+Errors might indicate:
 
-[Placeholder for an image related to debugging or performance analysis, e.g., the magnifying glass from Source 10]
+1. Configuration or capacity issues
+2. Service level objective violations
+3. That it's time to emit an alert
 
-***
+Sample error metrics include:
 
-**Slide 12: Key Characteristics of Google Cloud Observability**
+    - Wrong answers or incorrect content
+    - # 400/500 HTTP codes
+    - # failed requests
+    - # exceptions
+    - # stack traces
+    - Servers that fail liveness checks
+    - And # dropped connections
 
-*   **User-Focused:** Products are designed to help us understand the customer's experience through tools like SLO monitoring, uptime checks, and tracing.
-*   **Integrated for Ease:** Data is automatically ingested, datasets can be connected, and telemetry is collected in-context across Google Cloud services. This simplifies getting a holistic view.
-*   **Open, Flexible Foundations:** Leverages popular open source projects like Prometheus, OpenTelemetry, and Fluentbit.
-*   **Meaningful Analysis and Alerting:** Provides powerful tools for analysis and leverages alerting for both automated and human-driven responses.
+![alt text](image-8.png)
 
-[Placeholder for an image showing the integrated nature or the user focus, e.g., Image from Source 17 or 18]
+- The signal data flows into the Google Cloud operation's tools where it can be
+visualized in dashboards and through the Metrics Explorer.
+- Automated and custom logs can be dissected and analyzed in the Logs
+Explorer.
+- Services can be monitored for compliance with service level objectives (SLOs),
+and error budgets can be tracked.
+- Health checks can be used to check uptime and latency for external-facing
+sites and services.
 
-***
+When incidents occur:
 
-**Slide 13: How Observability Empowers Our Team**
+- Signal data can generate automated alerts to code or, through various
+information channels, to key personnel.
+- Error Reporting can help operations and developer teams spot, count, and
+analyze crashes in cloud-based services.
+- The visualization and analysis tools can then help troubleshoot what's
+happening in Google Cloud.
 
-*   **Faster Troubleshooting:** Provides data crucial for debugging functional and performance issues. Logs Explorer and Log Analytics help dissect and analyse log data for diagnosis.
-*   **Reduced Mean Time To Resolution (MTTR):** Advanced analytical capabilities help diagnose issues more quickly.
-*   **Proactive Problem Solving:** Monitoring reveals issues needing urgent attention, and alerting policies notify us before minor issues become major incidents.
-*   **Improved Performance:** Insights from monitoring and profiling guide optimisation efforts.
-*   **Enhanced Reliability:** Monitoring is fundamental to achieving and maintaining product reliability.
+## Cloud Monitoring
 
-[Placeholder for an image related to teamwork or problem-solving in IT, e.g., the gears and warning icon from Source 10]
+![alt text](image-9.png)
 
-***
+Cloud monitoring provides visibility into the ``performance``, ``uptime``, and ``overall health`` of cloud-powered applications.
 
-**Slide 14: Who Uses These Tools in Practice?**
+It collects ``metrics``, ``events``, and ``metadata`` from ``projects``, ``logs``, ``services``, ``systems``, ``agents``, ``custom code``, and various common application
+components, including Cassandra, Nginx, Apache Web Server, ``Elasticsearch``, and
+many others.
 
-While formal course target audiences include Cloud Architects, Administrators, SysOps, Developers, and DevOps personnel, the reality is more fluid.
-*   **Developers:** Often use Error Reporting, Trace, and Profiler for application troubleshooting. They also need access to logs and monitoring metrics.
-*   **Operations/SysOps:** Traditionally use logs and monitoring, but may need tracing tools too.
-*   **DevOps:** Span both development and operations needs, heavily relying on monitoring for product reliability, incident response, postmortems, and capacity planning. They also use advanced logging for troubleshooting.
-*   **SecOps Analysts:** Use logging features (especially audit logs and network logs) for security monitoring and investigation.
-*   **Anyone involved in ensuring the health, performance, and security of applications on Google Cloud benefits from these tools.**
+Monitoring ingests that data and generates insights via dashboards, Metrics Explorer
+charts, and automated alerts.
 
-[Placeholder for an image representing different roles or teams working together, e.g., Image from Source 2]
+### Cloud Monitoring Features
 
-***
+- **Automatic, free ingestion:** On 100+ monitored resources, over 1,500 metrics
+are immediately available with no cost
+- **Open Source Standards:** Leverage [Prometheus](https://prometheus.io/) and [OpenTelemetry](https://opentelemetry.io/) to collect
+metrics across compute workloads
+- **Customization for key workloads:** Cloud Monitoring offers custom visualization
+capabilities for GKE through Google Cloud Managed Service for ``Prometheus``
+and for Google Compute Engine through [Ops Agent](https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent).
+- **In-context visualizations & alerts:** View relevant telemetry data alongside your
+workloads across Google Cloud.
 
-**Slide 15: Prerequisites for Deeper Exploration (Optional)**
+## Cloud Logging
 
-If the team is interested in formal training (like the course these sources are from), the prerequisites typically involve:
-*   Basic scripting or coding ability.
-*   Google Cloud Fundamentals: Core Infrastructure or equivalent experience.
-*   Proficiency with command-line tools and Linux operating system environments.
+![alt text](image-10.png)
 
-[Placeholder for an image related to learning or prerequisites, e.g., Image from Source 3]
+- **Automatic, easy log ingestion:** Immediate ingestion from GCP services
+across your stack
+- **Gain insight quickly:** Tools like ``Error Reporting``, ``Log Explorer``, and ``Log
+Analytics`` let you quickly focus from large sets of data
+- **Customize routing & storage:** Route your logs to the region or service of
+your choice for additional compliance or business benefits
+- **Compliance Insights:** Leverage ``audit`` and app logs for compliance patterns
+and issues
 
-***
+- Google's Cloud Logging allows users to ``collect``, ``store``, ``search``, ``analyze``, ``monitor``, and ``alert`` on log entries and events.
 
-**Slide 16: Summary - Embracing Observability**
+  - Automated logging is integrated into Google Cloud products like ``App Engine``, ``Cloud Run``, ``Compute Engine VMs`` that run the logging agent, and ``GKE``.
+  - You can aggregate and centralize logs at a organizational level, project level and folder level based on your needs.
 
-*   Google Cloud Observability provides essential **visibility** into our systems.
-*   Tools like **Cloud Monitoring** and **Cloud Logging** are fundamental for collecting and analysing data.
-*   **Alerting** is key to proactive problem detection.
-*   **APM tools** help us perfect application performance.
-*   By leveraging these tools, we can **troubleshoot faster**, **improve reliability**, and ensure a better experience for our users.
+- Most log analysis start with Google Cloud’s integrated Logs Explorer.
 
-**Observability isn't just monitoring; it's about understanding the inner workings of our systems to respond effectively to any situation.**
+  - Logging entries can also be exported to several destinations for alternative or further analysis.
+  - Export log data as files to ``Google Cloud Storage``, or ``as messages through Pub/Sub``, or ``into BigQuery tables``.
+  - Pub/Sub messages can be analyzed in near-real time using ``custom code`` or stream processing technologies like ``Dataflow``.
+  - ``BigQuery`` allows analysts to examine logging data through ``SQL queries``.
+  - And archived log files in Cloud Storage can be analyzed with several tools and techniques.
+  - ``Logs-based metrics`` may be created and integrated into Cloud Monitoring dashboards, alerts, and service SLOs.
 
-[Placeholder for a concluding image, maybe a checkmark icon or the Google Cloud logo, e.g., Image from Source 2]
+- Default log retention in Cloud Logging depends on the log type. 
 
-***
+  - ``Data access logs`` are retained by default for ``30 days``, but this is configurable up to a ``max of 3650 days``.
+  - ``Admin logs`` are stored by default for ``400 days``.
+  - Export logs to ``Google Cloud Storage`` or ``BigQuery`` to ``extend retention``.
 
-**Slide 17: Questions & Discussion**
+![alt text](image-11.png)
 
-Thank you for your time!
+- **Get started quickly –** Out-of-the-box collection of system metrics and logs
+- **Use logging SDKs and library –** Integration into popular SDKs to support rich log formatting
+- **Analyze log in real-time:** Analyze log data in real-time, debug code, troubleshoot your apps
+- **Find errors quickly –** Find errors via stack traces automatically with Error Reporting
 
-What questions do you have about Google Cloud Observability and Monitoring?
+![alt text](image-12.png)
 
-[Placeholder for an image related to discussion or questions]
+- **Collect the right telemetry –** Instrumentation for GCE, on-prem and other cloud providers
+- **Centralize logs –** Centralize logs for specific users, teams and/or organizations
+- **Manage logs –** Set retention periods, select supported regions for regional data storage
+- **Set alerts –** Understand log volume/cost, set alerts on important application metrics
+- **Export logs –** Export to Google Cloud for storage, analysis, integrate with 3rd parties
 
-***
+![alt text](image-13.png)
 
-Good luck with your presentation!
+- **Collect audit logs –** Collect Google Cloud audit logs by default, advanced security logs such as data access logs
+- **Collect network telemetry data –** Collect and analyze VPC flow logs, GKE network, firewall, load balancer logs
+- **Analyze logs for security events –** View audit logs and other events to investigate possible security events
+
+## Error Reporing
+
+![alt text](image-14.png)
+
+Error Reporting counts, analyzes, and aggregates the crashes in your running cloud
+services.
+
+- **Real time processing:** Application errors are processed and displayed in the
+interface within seconds.
+- **Quickly view and understand errors:** A dedicated page displays the details of
+the error: bar chart over time, list of affected versions, request URL and link to
+the request log.
+- **Instant notification:** Do not wait for your users to report problems. 
+  - Error Reporting is always watching your service and instantly alerts you when a new application error cannot be grouped with existing ones. 
+  - Directly jump from a notification to the details of the new error.
+
+> You can also create alerts to receive notifications on new errors
+
+## Application Performance Management `APM`
+
+![alt text](image-15.png)
+
