@@ -180,7 +180,9 @@ analyze crashes in cloud-based services.
 - The visualization and analysis tools can then help troubleshoot what's
 happening in Google Cloud.
 
-## Cloud Monitoring
+## Operations Suite
+
+### Cloud Monitoring
 
 ![alt text](image-9.png)
 
@@ -193,7 +195,7 @@ many others.
 Monitoring ingests that data and generates insights via dashboards, Metrics Explorer
 charts, and automated alerts.
 
-### Cloud Monitoring Features
+#### Cloud Monitoring Features
 
 - **Automatic, free ingestion:** On 100+ monitored resources, over 1,500 metrics
 are immediately available with no cost
@@ -205,7 +207,7 @@ and for Google Compute Engine through [Ops Agent](https://cloud.google.com/stack
 - **In-context visualizations & alerts:** View relevant telemetry data alongside your
 workloads across Google Cloud.
 
-## Cloud Logging
+### Cloud Logging
 
 ![alt text](image-10.png)
 
@@ -259,7 +261,7 @@ and issues
 - **Collect network telemetry data –** Collect and analyze VPC flow logs, GKE network, firewall, load balancer logs
 - **Analyze logs for security events –** View audit logs and other events to investigate possible security events
 
-## Error Reporing
+### Error Reporing
 
 ![alt text](image-14.png)
 
@@ -277,7 +279,7 @@ the request log.
 
 > You can also create alerts to receive notifications on new errors
 
-## Application Performance Management `APM`
+### Application Performance Management `APM`
 
 ![alt text](image-15.png)
 
@@ -295,7 +297,7 @@ performance degradations.
 - Trace continuously gathers and analyzes trace data to automatically identify recent
 changes to your application's performance.
 
-### Latency reports
+#### Latency reports
 
 - View performance insights in near-real time.
 - Automatically analyze all of your application's traces to generate in-depth
